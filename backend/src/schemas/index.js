@@ -5,7 +5,15 @@ const objectId = z.string().regex(/^[a-f\d]{24}$/i, 'Invalid ObjectId');
 // ─── Auth ────────────────────────────────────────────────────────────────────
 export const loginSchema = z.object({
   email:    z.string().email(),
-  password: z.string().min(6),
+  password: z.string().min(1),
+});
+
+export const registerSchema = z.object({
+  name:     z.string().min(1),
+  email:    z.string().email(),
+  password: z.string().min(1),
+  role:     z.enum(['ward_staff', 'ward_doctor', 'admin']),
+  otp:      z.string().length(6),
 });
 
 // ─── Bed ─────────────────────────────────────────────────────────────────────
